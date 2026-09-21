@@ -334,15 +334,15 @@
       </div>
 
       <h1>
-        Happy Birthday! 💕
+        Happy Birthday!💕
       </h1>
 
       <div class="birthday-name">
-        To Someone Very Special ✨
+        Our Mentor🎀
       </div>
 
       <p>
-        Someone special has a lot of birthday wishes waiting
+        On this day, You have a lot of heartfelt messages waiting
         for you...
       </p>
 
@@ -368,11 +368,11 @@
       class="section hidden">
 
       <h2>
-        💌 People Who Sent Their Wishes
+        💌 Messages
       </h2>
 
       <p>
-        Your friends have something special to say...
+        We have something special to say...
       </p>
 
       <div id="friendNames">
@@ -441,22 +441,62 @@
 
       <div class="private-box">
 
-        <div class="lock">
-          🔒
+    
+
+    <div class="lock">
+        🔐
+    </div>
+
+    <p>
+        <strong>
+            Login to see all the private messages.
+        </strong>
+    </p>
+
+    <div class="login-form">
+
+        <input
+            type="email"
+            id="birthdayEmail"
+            placeholder="📧 Enter Gmail"
+            autocomplete="email"
+        >
+
+        <input
+            type="password"
+            id="birthdayPassword"
+            placeholder="🔒 Enter Password"
+            autocomplete="current-password"
+        >
+
+        <button onclick="birthdayLogin()">
+            🔓 Login
+        </button>
+
+        <p id="loginError" style="display:none;">
+            ❌ Incorrect Gmail or password.
+        </p>
+
+    </div>
+
+    <div id="privateMessages" style="display:none;">
+
+        <h3>💌 Private Birthday Wishes</h3>
+
+        <div id="privateMessagesList">
+            Loading private wishes...
         </div>
 
-        <p>
-          <strong>
-            Login to see all the private messages.
-          </strong>
-        </p>
+    </div>
 
-        <p>
-          The wishes sent by your friends are kept private
-          and can only be viewed by the birthday person.
-        </p>
+        </div>
+          
+        
 
-      </div>
+        
+          
+            
+          
 
     </section>
 
