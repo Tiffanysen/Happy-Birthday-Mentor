@@ -1227,72 +1227,43 @@
 
     async function birthdayLogin() {
 
-      const email =
-        document
-          .getElementById(
-            "jenishrahul17@gmail.com"
-          )
-          .value
-          .trim();
+  const email = document
+    .getElementById("birthdayEmail")
+    .value
+    .trim()
+    .toLowerCase();
+
+  const password = document
+    .getElementById("birthdayPassword")
+    .value
+    .trim();
+
+  const loginError =
+    document.getElementById("loginError");
+
+  const privateMessages =
+    document.getElementById("privateMessages");
 
 
-      const password =
-        document.getElementById(
-          "TJ0927"
-        ).value;
+  if (
+    email === "jenishrahul17@gmail.com" &&
+    password === "TJ0927"
+  ) {
 
+    loginError.style.display = "none";
 
-      const loginError =
-        document.getElementById(
-          "loginError"
-        );
+    privateMessages.style.display = "block";
 
+    await loadPrivateMessages();
 
-      const privateMessages =
-        document.getElementById(
-          "privateMessages"
-        );
+    createConfetti();
 
+  } else {
 
-      /*
-       * Check credentials.
-       */
+    loginError.style.display = "block";
 
-      if (
-
-        email.toLowerCase() ===
-        BIRTHDAY_GMAIL.toLowerCase()
-
-        &&
-
-        password ===
-        BIRTHDAY_PASSWORD
-
-      ) {
-
-
-        loginError.style.display =
-          "none";
-
-
-        privateMessages.style.display =
-          "block";
-
-
-        await loadPrivateMessages();
-
-
-        createConfetti();
-
-
-      } else {
-
-        loginError.style.display =
-          "block";
-
-      }
-
-    }
+  }
+}
 
 
     /* =====================================
