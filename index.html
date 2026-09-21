@@ -2,143 +2,312 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Happy Birthday 🎂</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Happy Birthday 💕</title>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      font-family: Georgia, serif;
+      margin: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg, #fff1f7, #f5edff);
-      color: #3b2940;
-      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        linear-gradient(135deg, #fff4fb, #f5e8ff, #fff7fb);
+      color: #3f2944;
+      overflow-x: hidden;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 22px;
+      animation: floatHeart 8s linear infinite;
+      opacity: 0.65;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart:nth-child(1) {
+      left: 10%;
+      animation-delay: 1s;
+    }
+
+    .heart:nth-child(2) {
+      left: 30%;
+      animation-delay: 3s;
+    }
+
+    .heart:nth-child(3) {
+      left: 55%;
+      animation-delay: 0s;
+    }
+
+    .heart:nth-child(4) {
+      left: 80%;
+      animation-delay: 4s;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
     }
 
     .container {
-      max-width: 700px;
+      width: 92%;
+      max-width: 850px;
       margin: auto;
-      padding: 30px 20px;
+      padding: 30px 0 70px;
+      position: relative;
+      z-index: 1;
     }
 
+    /* Main card */
     .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      background: rgba(255,255,255,0.82);
+      border-radius: 35px;
+      padding: 50px 25px;
+      text-align: center;
+      box-shadow: 0 15px 45px rgba(90, 50, 100, 0.12);
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
     }
 
-    .cake {
-      font-size: 80px;
-      animation: float 2s ease-in-out infinite;
+    .hero .emoji {
+      font-size: 70px;
+      margin-bottom: 10px;
     }
 
     h1 {
-      font-size: 42px;
-      margin: 20px 0 10px;
+      font-size: clamp(40px, 10vw, 75px);
+      margin: 5px 0 15px;
+      color: #542f58;
     }
 
-    .subtitle {
-      font-size: 18px;
-      opacity: 0.8;
-      margin-bottom: 30px;
+    .hero p {
+      font-size: 20px;
+      line-height: 1.6;
+      margin: 10px auto;
+      max-width: 650px;
+    }
+
+    .birthday-name {
+      font-size: 30px;
+      font-weight: bold;
+      color: #8b4ca0;
+      margin: 20px 0;
     }
 
     button {
       border: none;
-      border-radius: 30px;
-      padding: 14px 25px;
-      font-size: 16px;
       cursor: pointer;
-      background: #8e5aa7;
+      font-family: inherit;
+      font-weight: bold;
+    }
+
+    .surprise-btn {
+      background: linear-gradient(135deg, #a45ac4, #8142a0);
       color: white;
-      box-shadow: 0 8px 20px rgba(0,0,0,.15);
+      padding: 16px 34px;
+      border-radius: 40px;
+      font-size: 18px;
+      margin-top: 20px;
+      box-shadow: 0 8px 20px rgba(120, 60, 150, 0.25);
+      transition: 0.25s;
     }
 
-    button:hover {
-      transform: translateY(-2px);
+    .surprise-btn:hover {
+      transform: translateY(-3px);
     }
 
+    /* Sections */
     .section {
-      background: rgba(255,255,255,.75);
-      border-radius: 25px;
-      padding: 25px;
+      background: rgba(255,255,255,0.88);
+      border-radius: 30px;
+      padding: 35px 25px;
       margin: 25px 0;
-      box-shadow: 0 10px 30px rgba(70,40,80,.08);
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(80, 40, 100, 0.10);
+    }
+
+    .section h2 {
+      font-size: clamp(28px, 7vw, 42px);
+      color: #4d304f;
+      margin: 5px 0 15px;
+    }
+
+    .section p {
+      font-size: 18px;
+      line-height: 1.55;
     }
 
     .hidden {
       display: none;
     }
 
-    .friend {
+    /* Friend names */
+    #friendNames {
+      margin-top: 20px;
+    }
+
+    .friend-name {
       display: inline-block;
-      margin: 7px;
-      padding: 10px 18px;
-      border-radius: 20px;
-      background: #eadcf0;
+      background: #f7e9fb;
+      padding: 12px 18px;
+      margin: 6px;
+      border-radius: 25px;
+      color: #66366d;
+      font-size: 17px;
+      box-shadow: 0 3px 10px rgba(100,50,120,0.08);
+    }
+
+    .loading {
+      font-size: 18px;
+      color: #765878;
+    }
+
+    .error {
+      color: #a14c64;
+    }
+
+    /* Form */
+    .form-group {
+      margin: 18px 0;
     }
 
     input,
     textarea {
       width: 100%;
-      padding: 14px;
-      margin: 8px 0 15px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      font-size: 16px;
-      font-family: inherit;
+      padding: 17px 18px;
+      border: 1px solid #e1d5e4;
+      border-radius: 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
+      outline: none;
+      background: #fff;
+      color: #3f2944;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #a15ab8;
+      box-shadow: 0 0 0 3px rgba(161,90,184,0.10);
     }
 
     textarea {
-      min-height: 130px;
+      min-height: 180px;
       resize: vertical;
     }
 
-    .message {
-      text-align: left;
-      background: #fff;
-      border-radius: 18px;
-      padding: 18px;
-      margin: 12px 0;
-      box-shadow: 0 5px 15px rgba(0,0,0,.06);
+    .send-btn {
+      background: linear-gradient(135deg, #a45ac4, #8142a0);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 35px;
+      font-size: 18px;
+      margin-top: 5px;
     }
 
-    .message strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #7a478e;
+    #sendStatus {
+      margin-top: 18px;
+      font-size: 18px;
+      min-height: 25px;
     }
 
-    .logout {
-      margin-top: 15px;
-      background: #555;
+    /* Private section */
+    .private-box {
+      background: #fff7fd;
+      border: 1px dashed #d6acd9;
+      border-radius: 22px;
+      padding: 25px;
+      margin-top: 20px;
     }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
+    .private-box p {
+      margin: 8px 0;
+    }
+
+    .lock {
+      font-size: 50px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #795d7e;
+      font-size: 15px;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 9px;
+      height: 14px;
+      top: -20px;
+      z-index: 100;
+      pointer-events: none;
+      animation: fall 4s linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform:
+          translateY(110vh)
+          rotate(720deg);
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: 94%;
+        padding-top: 15px;
       }
 
-      50% {
-        transform: translateY(-12px);
-      }
-    }
-
-    @media(max-width:600px) {
-      h1 {
-        font-size: 32px;
+      .hero {
+        padding: 40px 18px;
+        border-radius: 28px;
       }
 
-      .cake {
-        font-size: 65px;
+      .section {
+        padding: 28px 18px;
+        border-radius: 26px;
+      }
+
+      .hero p,
+      .section p {
+        font-size: 17px;
+      }
+
+      input,
+      textarea {
+        font-size: 16px;
+      }
+
+      .surprise-btn,
+      .send-btn {
+        width: 90%;
       }
     }
   </style>
@@ -146,137 +315,202 @@
 
 <body>
 
-  <div class="container">
+  <!-- Floating hearts -->
+  <div class="heart">💗</div>
+  <div class="heart">💕</div>
+  <div class="heart">🦋</div>
+  <div class="heart">💜</div>
 
-    <!-- BIRTHDAY INTRO -->
+  <main class="container">
+
+    <!-- =========================
+         WELCOME SECTION
+    ========================== -->
+
     <section class="hero">
 
-      <div class="cake">🎂</div>
+      <div class="emoji">
+        🎂
+      </div>
 
-      <h1>Happy Birthday! 🎉</h1>
+      <h1>
+        Happy Birthday! 💕
+      </h1>
 
-      <p class="subtitle">
-        Someone special has a lot of birthday wishes waiting...
+      <div class="birthday-name">
+        To Someone Very Special ✨
+      </div>
+
+      <p>
+        Someone special has a lot of birthday wishes waiting
+        for you...
       </p>
 
-      <button onclick="openSurprise()">
+      <p>
+        There is a little surprise waiting below. 💌
+      </p>
+
+      <button
+        class="surprise-btn"
+        onclick="openSurprise()">
         Open Your Surprise 🎁
       </button>
 
     </section>
 
 
-    <!-- FRIEND NAMES -->
-    <section id="surprise" class="section hidden">
+    <!-- =========================
+         SURPRISE / FRIEND NAMES
+    ========================== -->
 
-      <h2>💌 People Who Sent Their Wishes</h2>
+    <section
+      id="surprise"
+      class="section hidden">
 
-      <p style="margin:15px 0;">
+      <h2>
+        💌 People Who Sent Their Wishes
+      </h2>
+
+      <p>
         Your friends have something special to say...
       </p>
 
       <div id="friendNames">
-        Loading names...
+        <div class="loading">
+          Loading names...
+        </div>
       </div>
 
     </section>
 
 
-    <!-- SEND MESSAGE -->
+    <!-- =========================
+         SEND BIRTHDAY WISH
+    ========================== -->
+
     <section class="section">
 
-      <h2>✍️ Leave a Birthday Wish</h2>
+      <h2>
+        ✍️ Leave a Birthday Wish
+      </h2>
 
-      <p style="margin:12px 0 20px;">
-        Your name will be visible, but your message will remain private.
+      <p>
+        Your name will be visible, but your message will
+        remain private.
       </p>
 
-      <input
-        id="friendName"
-        type="text"
-        placeholder="Your name"
-      >
+      <div class="form-group">
 
-      <textarea
-        id="friendMessage"
-        placeholder="Write your birthday message..."
-      ></textarea>
+        <input
+          type="text"
+          id="friendName"
+          placeholder="Your name"
+          maxlength="100">
 
-      <button onclick="submitWish()">
+      </div>
+
+      <div class="form-group">
+
+        <textarea
+          id="birthdayMessage"
+          placeholder="Write your birthday wish here..."
+          maxlength="2000"></textarea>
+
+      </div>
+
+      <button
+        class="send-btn"
+        onclick="sendBirthdayWish()">
         Send Birthday Wish 💌
       </button>
 
-      <p id="submitStatus"></p>
+      <div id="sendStatus"></div>
 
     </section>
 
 
-    <!-- BIRTHDAY PERSON LOGIN -->
+    <!-- =========================
+         PRIVATE MESSAGE SECTION
+    ========================== -->
+
     <section class="section">
 
-      <h2>🔐 Birthday Person</h2>
+      <h2>
+        🔐 Birthday Person
+      </h2>
 
-      <p style="margin:12px 0 20px;">
-        Login to see all the private messages.
-      </p>
+      <div class="private-box">
 
-      <input
-        id="email"
-        type="email"
-        placeholder="Email"
-      >
+        <div class="lock">
+          🔒
+        </div>
 
-      <input
-        id="password"
-        type="password"
-        placeholder="Password"
-      >
+        <p>
+          <strong>
+            Login to see all the private messages.
+          </strong>
+        </p>
 
-      <button onclick="login()">
-        Login 🔐
-      </button>
+        <p>
+          The wishes sent by your friends are kept private
+          and can only be viewed by the birthday person.
+        </p>
 
-      <p id="loginStatus"></p>
-
-    </section>
-
-
-    <!-- PRIVATE MESSAGES -->
-    <section id="privateMessages" class="section hidden">
-
-      <h2>💖 Your Private Birthday Messages</h2>
-
-      <div id="messages">
-        Loading...
       </div>
 
-      <button class="logout" onclick="logout()">
-        Logout
-      </button>
+    </section>
+
+
+    <!-- =========================
+         FINAL MESSAGE
+    ========================== -->
+
+    <section class="section">
+
+      <h2>
+        🦋 One More Thing...
+      </h2>
+
+      <p>
+        May the year ahead bring you beautiful moments,
+        unexpected happiness, meaningful memories and
+        everything your heart is hoping for. 💕
+      </p>
+
+      <p>
+        Keep smiling, keep growing and keep being the
+        wonderful person you are. ✨
+      </p>
+
+      <p>
+        Happy Birthday once again! 🎂💗
+      </p>
 
     </section>
 
-  </div>
+
+    <footer>
+      Made with ❤️ for a very special birthday.
+    </footer>
+
+  </main>
 
 
-  <!-- SUPABASE -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
   <script>
 
-    /*
-      =====================================
-      SUPABASE CONFIGURATION
-      =====================================
-
-      We will replace these two values later.
-    */
+    /* =====================================
+       SUPABASE CONFIGURATION
+    ====================================== */
 
     const SUPABASE_URL =
-  "https://exopufmvqktzkntifqpj.supabase.co";
+      "https://exopufmvqktzkntifqpj.supabase.co";
 
     const SUPABASE_KEY =
-  "sb_publishable_uJqcxeregWfthzEMeLl_9Q_3rawqV3X";
+      "sb_publishable_uJqcxeregWfthzEMeLl_9Q_3rawqV3X";
 
 
     const supabaseClient =
@@ -286,268 +520,289 @@
       );
 
 
-    // Open birthday surprise
+    /* =====================================
+       OPEN SURPRISE
+    ====================================== */
+
     async function openSurprise() {
 
-      document
-        .getElementById("surprise")
-        .classList.remove("hidden");
+      const surprise =
+        document.getElementById("surprise");
+
+      surprise.classList.remove("hidden");
+
+      createConfetti();
 
       await loadFriendNames();
 
-      document
-        .getElementById("surprise")
-        .scrollIntoView({
-          behavior: "smooth"
+      setTimeout(() => {
+
+        surprise.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
         });
+
+      }, 100);
+
     }
 
 
-    // Load names only
+    /* =====================================
+       LOAD FRIEND NAMES
+    ====================================== */
+
     async function loadFriendNames() {
 
-      const box =
+      const container =
         document.getElementById("friendNames");
 
-      const { data, error } =
-        await supabaseClient
-          .rpc("get_friend_names");
+      container.innerHTML =
+        '<div class="loading">Loading names... 💌</div>';
 
-      if (error) {
+      try {
 
-        box.innerHTML =
-          "Unable to load names.";
+        const {
+          data,
+          error
+        } = await supabaseClient.rpc(
+          "get_friend_names"
+        );
+
+
+        if (error) {
+
+          console.error(
+            "Supabase error:",
+            error
+          );
+
+          container.innerHTML =
+            '<div class="error">Unable to load names.</div>';
+
+          return;
+        }
+
+
+        if (!data || data.length === 0) {
+
+          container.innerHTML =
+            '<div class="loading">No wishes yet... 💌</div>';
+
+          return;
+        }
+
+
+        container.innerHTML =
+          data.map(row => {
+
+            return `
+              <div class="friend-name">
+                💌 ${escapeHTML(row.friend_name)}
+              </div>
+            `;
+
+          }).join("");
+
+      }
+
+      catch (error) {
 
         console.error(error);
 
-        return;
+        container.innerHTML =
+          '<div class="error">Unable to load names.</div>';
+
       }
 
-      if (!data || data.length === 0) {
-
-        box.innerHTML =
-          "No wishes yet ❤️";
-
-        return;
-      }
-
-      box.innerHTML = "";
-
-      data.forEach(friend => {
-
-        const name =
-          document.createElement("span");
-
-        name.className = "friend";
-
-        name.textContent =
-          "💜 " + friend.friend_name;
-
-        box.appendChild(name);
-
-      });
     }
 
 
-    // Submit birthday wish
-    async function submitWish() {
+    /* =====================================
+       SEND BIRTHDAY WISH
+    ====================================== */
 
-      const name =
-        document
-          .getElementById("friendName")
-          .value
-          .trim();
+    async function sendBirthdayWish() {
 
-      const message =
-        document
-          .getElementById("friendMessage")
-          .value
-          .trim();
+      const nameInput =
+        document.getElementById("friendName");
+
+      const messageInput =
+        document.getElementById("birthdayMessage");
 
       const status =
-        document.getElementById("submitStatus");
+        document.getElementById("sendStatus");
 
 
-      if (!name || !message) {
+      const name =
+        nameInput.value.trim();
+
+      const message =
+        messageInput.value.trim();
+
+
+      /* Validation */
+
+      if (!name) {
 
         status.textContent =
-          "Please enter your name and message.";
+          "Please enter your name.";
 
         return;
       }
 
 
-      const { error } =
-        await supabaseClient
+      if (!message) {
+
+        status.textContent =
+          "Please write a birthday wish.";
+
+        return;
+      }
+
+
+      status.textContent =
+        "Sending your birthday wish... 💌";
+
+
+      try {
+
+        const {
+          error
+        } = await supabaseClient
           .from("birthday_messages")
-          .insert({
+          .insert([
+            {
+              friend_name: name,
+              message: message
+            }
+          ]);
 
-            friend_name: name,
 
-            message: message
+        if (error) {
 
-          });
+          console.error(
+            "Insert error:",
+            error
+          );
+
+          status.textContent =
+            "Something went wrong. Please try again.";
+
+          return;
+        }
 
 
-      if (error) {
+        /* Success */
+
+        status.textContent =
+          "💌 Your birthday wish has been sent successfully!";
+
+
+        nameInput.value = "";
+
+        messageInput.value = "";
+
+
+        createConfetti();
+
+
+        /* Refresh names */
+
+        await loadFriendNames();
+
+
+      }
+
+      catch (error) {
+
+        console.error(error);
 
         status.textContent =
           "Something went wrong. Please try again.";
 
-        console.error(error);
-
-        return;
       }
 
-
-      status.textContent =
-        "💌 Your birthday wish has been sent!";
-
-
-      document
-        .getElementById("friendName")
-        .value = "";
-
-      document
-        .getElementById("friendMessage")
-        .value = "";
-
-
-      await loadFriendNames();
     }
 
 
-    // Birthday person login
-    async function login() {
+    /* =====================================
+       HTML ESCAPE
+       Prevents unwanted HTML injection
+    ====================================== */
 
-      const email =
-        document
-          .getElementById("email")
-          .value;
+    function escapeHTML(value) {
 
-      const password =
-        document
-          .getElementById("password")
-          .value;
-
-      const status =
-        document.getElementById("loginStatus");
-
-
-      const { error } =
-        await supabaseClient.auth
-          .signInWithPassword({
-
-            email: email,
-
-            password: password
-
-          });
-
-
-      if (error) {
-
-        status.textContent =
-          "Login failed. Check your email and password.";
-
-        return;
+      if (!value) {
+        return "";
       }
 
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
-      status.textContent =
-        "Login successful! ❤️";
-
-      await loadPrivateMessages();
     }
 
 
-    // Load private messages
-    async function loadPrivateMessages() {
+    /* =====================================
+       CONFETTI
+    ====================================== */
 
-      const section =
-        document
-          .getElementById("privateMessages");
+    function createConfetti() {
 
-      const box =
-        document
-          .getElementById("messages");
-
-
-      section.classList.remove("hidden");
-
-
-      const { data, error } =
-        await supabaseClient
-          .from("birthday_messages")
-          .select("friend_name,message,created_at")
-          .order("created_at", {
-            ascending: false
-          });
+      const emojis = [
+        "🎉",
+        "🎊",
+        "💗",
+        "💕",
+        "✨",
+        "🦋",
+        "💜"
+      ];
 
 
-      if (error) {
+      for (let i = 0; i < 35; i++) {
 
-        box.innerHTML =
-          "Unable to load private messages.";
-
-        console.error(error);
-
-        return;
-      }
-
-
-      box.innerHTML = "";
-
-
-      data.forEach(item => {
-
-        const message =
+        const piece =
           document.createElement("div");
 
-        message.className =
-          "message";
+        piece.className = "confetti";
+
+        piece.textContent =
+          emojis[
+            Math.floor(
+              Math.random() * emojis.length
+            )
+          ];
 
 
-        message.innerHTML =
-          `<strong>💜 ${escapeHTML(item.friend_name)}</strong>
-           <div>${escapeHTML(item.message)}</div>`;
+        piece.style.left =
+          Math.random() * 100 + "vw";
+
+        piece.style.animationDuration =
+          (3 + Math.random() * 3) + "s";
+
+        piece.style.fontSize =
+          (12 + Math.random() * 15) + "px";
 
 
-        box.appendChild(message);
-
-      });
+        document.body.appendChild(piece);
 
 
-      section.scrollIntoView({
-        behavior: "smooth"
-      });
+        setTimeout(() => {
+
+          piece.remove();
+
+        }, 7000);
+
+      }
+
     }
 
-
-    // Logout
-    async function logout() {
-
-      await supabaseClient.auth.signOut();
-
-      document
-        .getElementById("privateMessages")
-        .classList.add("hidden");
-
-    }
-
-
-    // Security helper
-    function escapeHTML(text) {
-
-      const div =
-        document.createElement("div");
-
-      div.textContent = text;
-
-      return div.innerHTML;
-    }
 
   </script>
 
 </body>
-        </html>
+      </html>
