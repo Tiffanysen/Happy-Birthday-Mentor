@@ -14,300 +14,343 @@
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background: linear-gradient(135deg, #fff0f6, #ffe4ef, #fff8fb);
+      color: #4a2635;
       min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        linear-gradient(135deg, #fff4fb, #f5e8ff, #fff7fb);
-      color: #3f2944;
       overflow-x: hidden;
     }
 
-    /* Floating hearts */
+    /* -------------------------
+       BACKGROUND HEARTS
+    ------------------------- */
+
     .heart {
       position: fixed;
       bottom: -30px;
       font-size: 22px;
-      animation: floatHeart 8s linear infinite;
-      opacity: 0.65;
+      animation: floatUp linear forwards;
       pointer-events: none;
       z-index: 0;
+      opacity: 0.75;
     }
 
-    .heart:nth-child(1) {
-      left: 10%;
-      animation-delay: 1s;
-    }
-
-    .heart:nth-child(2) {
-      left: 30%;
-      animation-delay: 3s;
-    }
-
-    .heart:nth-child(3) {
-      left: 55%;
-      animation-delay: 0s;
-    }
-
-    .heart:nth-child(4) {
-      left: 80%;
-      animation-delay: 4s;
-    }
-
-    @keyframes floatHeart {
+    @keyframes floatUp {
       0% {
-        transform: translateY(0) scale(1);
+        transform: translateY(0) rotate(0deg);
         opacity: 0;
       }
 
-      20% {
-        opacity: 0.7;
+      15% {
+        opacity: 0.8;
       }
 
       100% {
-        transform: translateY(-110vh) scale(1.5);
+        transform: translateY(-110vh) rotate(360deg);
         opacity: 0;
       }
     }
 
+    /* -------------------------
+       MAIN CONTAINER
+    ------------------------- */
+
     .container {
-      width: 92%;
-      max-width: 850px;
-      margin: auto;
-      padding: 30px 0 70px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
+      width: min(900px, 92%);
+      margin: auto;
+      padding: 30px 0 80px;
     }
 
-    /* Main card */
+    /* -------------------------
+       HERO
+    ------------------------- */
+
     .hero {
-      background: rgba(255,255,255,0.82);
-      border-radius: 35px;
-      padding: 50px 25px;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      box-shadow: 0 15px 45px rgba(90, 50, 100, 0.12);
-      margin-bottom: 30px;
-      backdrop-filter: blur(10px);
     }
 
-    .hero .emoji {
-      font-size: 70px;
-      margin-bottom: 10px;
+    .hero-card {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 55px 25px;
+      box-shadow: 0 20px 60px rgba(190, 80, 120, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.8);
     }
 
-    h1 {
-      font-size: clamp(40px, 10vw, 75px);
-      margin: 5px 0 15px;
-      color: #542f58;
+    .small-text {
+      font-size: 15px;
+      color: #a65c78;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 9vw, 82px);
+      line-height: 1.05;
+      color: #d84d7b;
+      margin-bottom: 20px;
+    }
+
+    .hero h2 {
+      font-size: clamp(20px, 5vw, 32px);
+      font-weight: 500;
+      margin-bottom: 20px;
     }
 
     .hero p {
-      font-size: 20px;
-      line-height: 1.6;
-      margin: 10px auto;
-      max-width: 650px;
+      font-size: 17px;
+      color: #775060;
+      line-height: 1.7;
     }
 
-    .birthday-name {
-      font-size: 30px;
-      font-weight: bold;
-      color: #8b4ca0;
-      margin: 20px 0;
+    .heart-big {
+      font-size: 55px;
+      animation: heartbeat 1.4s infinite;
+      margin-bottom: 15px;
     }
 
-    button {
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    /* -------------------------
+       BUTTON
+    ------------------------- */
+
+    .btn {
       border: none;
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: bold;
-    }
-
-    .surprise-btn {
-      background: linear-gradient(135deg, #a45ac4, #8142a0);
+      background: linear-gradient(135deg, #e95d8c, #c93f6e);
       color: white;
-      padding: 16px 34px;
-      border-radius: 40px;
-      font-size: 18px;
-      margin-top: 20px;
-      box-shadow: 0 8px 20px rgba(120, 60, 150, 0.25);
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 25px;
+      box-shadow: 0 10px 25px rgba(210, 70, 110, 0.25);
       transition: 0.25s;
     }
 
-    .surprise-btn:hover {
+    .btn:hover {
       transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(210, 70, 110, 0.35);
     }
 
-    /* Sections */
-    .section {
-      background: rgba(255,255,255,0.88);
-      border-radius: 30px;
-      padding: 35px 25px;
-      margin: 25px 0;
-      text-align: center;
-      box-shadow: 0 10px 35px rgba(80, 40, 100, 0.10);
+    /* -------------------------
+       SECTIONS
+    ------------------------- */
+
+    section {
+      margin-top: 45px;
     }
 
-    .section h2 {
-      font-size: clamp(28px, 7vw, 42px);
-      color: #4d304f;
-      margin: 5px 0 15px;
-    }
-
-    .section p {
-      font-size: 18px;
-      line-height: 1.55;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    /* Friend names */
-    #friendNames {
-      margin-top: 20px;
-    }
-
-    .friend-name {
-      display: inline-block;
-      background: #f7e9fb;
-      padding: 12px 18px;
-      margin: 6px;
+    .card {
+      background: rgba(255, 255, 255, 0.88);
       border-radius: 25px;
-      color: #66366d;
-      font-size: 17px;
-      box-shadow: 0 3px 10px rgba(100,50,120,0.08);
+      padding: 30px;
+      box-shadow: 0 15px 40px rgba(190, 80, 120, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.8);
     }
 
-    .loading {
-      font-size: 18px;
-      color: #765878;
-    }
-
-    .error {
-      color: #a14c64;
-    }
-
-    /* Form */
-    .form-group {
-      margin: 18px 0;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 17px 18px;
-      border: 1px solid #e1d5e4;
-      border-radius: 18px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 17px;
-      outline: none;
-      background: #fff;
-      color: #3f2944;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: #a15ab8;
-      box-shadow: 0 0 0 3px rgba(161,90,184,0.10);
-    }
-
-    textarea {
-      min-height: 180px;
-      resize: vertical;
-    }
-
-    .send-btn {
-      background: linear-gradient(135deg, #a45ac4, #8142a0);
-      color: white;
-      padding: 16px 32px;
-      border-radius: 35px;
-      font-size: 18px;
-      margin-top: 5px;
-    }
-
-    #sendStatus {
-      margin-top: 18px;
-      font-size: 18px;
-      min-height: 25px;
-    }
-
-    /* Private section */
-    .private-box {
-      background: #fff7fd;
-      border: 1px dashed #d6acd9;
-      border-radius: 22px;
-      padding: 25px;
-      margin-top: 20px;
-    }
-
-    .private-box p {
-      margin: 8px 0;
-    }
-
-    .lock {
-      font-size: 50px;
-    }
-
-    /* Footer */
-    footer {
+    .section-title {
       text-align: center;
-      margin-top: 40px;
-      color: #795d7e;
-      font-size: 15px;
+      color: #d84d7b;
+      font-size: 30px;
+      margin-bottom: 20px;
     }
 
-    /* Confetti */
-    .confetti {
-      position: fixed;
-      width: 9px;
-      height: 14px;
-      top: -20px;
-      z-index: 100;
-      pointer-events: none;
-      animation: fall 4s linear forwards;
+    /* -------------------------
+       WISH
+    ------------------------- */
+
+    .wish {
+      font-size: 17px;
+      line-height: 1.9;
+      color: #674050;
+      white-space: pre-line;
     }
 
-    @keyframes fall {
+    /* -------------------------
+       MEMORY CARDS
+    ------------------------- */
+
+    .memories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    .memory {
+      background: #fff5f8;
+      padding: 25px 18px;
+      border-radius: 20px;
+      text-align: center;
+      transition: 0.25s;
+    }
+
+    .memory:hover {
+      transform: translateY(-5px);
+    }
+
+    .memory .emoji {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .memory h3 {
+      color: #c94d76;
+      margin-bottom: 8px;
+    }
+
+    .memory p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #765565;
+    }
+
+    /* -------------------------
+       GALLERY
+    ------------------------- */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    /* -------------------------
+       SURPRISE
+    ------------------------- */
+
+    .surprise {
+      text-align: center;
+    }
+
+    .surprise-box {
+      display: none;
+      margin-top: 25px;
+      padding: 25px;
+      background: #fff0f5;
+      border-radius: 20px;
+      line-height: 1.8;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .surprise-box.show {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
       to {
-        transform:
-          translateY(110vh)
-          rotate(720deg);
+        opacity: 1;
+        transform: translateY(0);
       }
     }
+
+    /* -------------------------
+       FOOTER
+    ------------------------- */
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: #9a6377;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* -------------------------
+       LOADING
+    ------------------------- */
+
+    #loading {
+      position: fixed;
+      inset: 0;
+      background: #fff4f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: 0.5s;
+    }
+
+    #loading.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader {
+      text-align: center;
+      color: #d84d7b;
+    }
+
+    .loader-heart {
+      font-size: 50px;
+      animation: heartbeat 1s infinite;
+    }
+
+    /* -------------------------
+       MOBILE
+    ------------------------- */
 
     @media (max-width: 600px) {
 
       .container {
         width: 94%;
-        padding-top: 15px;
       }
 
-      .hero {
+      .hero-card {
         padding: 40px 18px;
-        border-radius: 28px;
       }
 
-      .section {
-        padding: 28px 18px;
-        border-radius: 26px;
+      .card {
+        padding: 22px 18px;
       }
 
-      .hero p,
-      .section p {
-        font-size: 17px;
+      .section-title {
+        font-size: 25px;
       }
 
-      input,
-      textarea {
-        font-size: 16px;
+      .wish {
+        font-size: 15px;
       }
 
-      .surprise-btn,
-      .send-btn {
-        width: 90%;
+      .gallery img {
+        height: 180px;
       }
     }
   </style>
@@ -315,146 +358,49 @@
 
 <body>
 
-  <!-- Floating hearts -->
-  <div class="heart">💗</div>
-  <div class="heart">💕</div>
-  <div class="heart">🦋</div>
-  <div class="heart">💜</div>
+  <!-- Loading -->
+  <div id="loading">
+    <div class="loader">
+      <div class="loader-heart">❤️</div>
+      <p>Loading something special...</p>
+    </div>
+  </div>
 
   <main class="container">
 
     <!-- =========================
-         WELCOME SECTION
+         HERO
     ========================== -->
 
     <section class="hero">
 
-      <div class="emoji">
-        🎂
-      </div>
+      <div class="hero-card">
 
-      <h1>
-        Happy Birthday! 💕
-      </h1>
-
-      <div class="birthday-name">
-        To Someone Very Special ✨
-      </div>
-
-      <p>
-        Someone special has a lot of birthday wishes waiting
-        for you...
-      </p>
-
-      <p>
-        There is a little surprise waiting below. 💌
-      </p>
-
-      <button
-        class="surprise-btn"
-        onclick="openSurprise()">
-        Open Your Surprise 🎁
-      </button>
-
-    </section>
-
-
-    <!-- =========================
-         SURPRISE / FRIEND NAMES
-    ========================== -->
-
-    <section
-      id="surprise"
-      class="section hidden">
-
-      <h2>
-        💌 People Who Sent Their Wishes
-      </h2>
-
-      <p>
-        Your friends have something special to say...
-      </p>
-
-      <div id="friendNames">
-        <div class="loading">
-          Loading names...
-        </div>
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         SEND BIRTHDAY WISH
-    ========================== -->
-
-    <section class="section">
-
-      <h2>
-        ✍️ Leave a Birthday Wish
-      </h2>
-
-      <p>
-        Your name will be visible, but your message will
-        remain private.
-      </p>
-
-      <div class="form-group">
-
-        <input
-          type="text"
-          id="friendName"
-          placeholder="Your name"
-          maxlength="100">
-
-      </div>
-
-      <div class="form-group">
-
-        <textarea
-          id="birthdayMessage"
-          placeholder="Write your birthday wish here..."
-          maxlength="2000"></textarea>
-
-      </div>
-
-      <button
-        class="send-btn"
-        onclick="sendBirthdayWish()">
-        Send Birthday Wish 💌
-      </button>
-
-      <div id="sendStatus"></div>
-
-    </section>
-
-
-    <!-- =========================
-         PRIVATE MESSAGE SECTION
-    ========================== -->
-
-    <section class="section">
-
-      <h2>
-        🔐 Birthday Person
-      </h2>
-
-      <div class="private-box">
-
-        <div class="lock">
-          🔒
+        <div class="heart-big">
+          💕
         </div>
 
-        <p>
-          <strong>
-            Login to see all the private messages.
-          </strong>
-        </p>
+        <div class="small-text">
+          A little website made with a lot of love...
+        </div>
+
+        <h1>
+          Happy Birthday!
+        </h1>
+
+        <h2 id="birthdayName">
+          My Favorite Person ❤️
+        </h2>
 
         <p>
-          The wishes sent by your friends are kept private
-          and can only be viewed by the birthday person.
+          Today isn't just another day...
+          it's your special day. 🥹
         </p>
+
+        <button class="btn"
+                onclick="scrollToWish()">
+          Open Your Wish 💌
+        </button>
 
       </div>
 
@@ -462,347 +408,593 @@
 
 
     <!-- =========================
-         FINAL MESSAGE
+         BIRTHDAY WISH
     ========================== -->
 
-    <section class="section">
+    <section id="wishSection">
 
-      <h2>
-        🦋 One More Thing...
-      </h2>
+      <div class="card">
 
-      <p>
-        May the year ahead bring you beautiful moments,
-        unexpected happiness, meaningful memories and
-        everything your heart is hoping for. 💕
-      </p>
+        <h2 class="section-title">
+          A Little Something For You 💌
+        </h2>
 
-      <p>
-        Keep smiling, keep growing and keep being the
-        wonderful person you are. ✨
-      </p>
+        <div id="wishText"
+             class="wish">
 
-      <p>
-        Happy Birthday once again! 🎂💗
-      </p>
+          <!--
+          YOUR EXISTING WISH GOES HERE
+
+          Replace this text with the wish
+          you already wrote.
+          -->
+
+          Happy Birthday to someone who makes
+          ordinary moments feel special. ❤️
+
+          I hope this year brings you happiness,
+          beautiful memories, lots of laughter,
+          and everything you've been wishing for.
+
+          No matter how life changes,
+          I hope you always remember
+          how special you are. 🥹❤️
+
+        </div>
+
+      </div>
 
     </section>
 
+
+    <!-- =========================
+         MEMORIES
+    ========================== -->
+
+    <section>
+
+      <div class="card">
+
+        <h2 class="section-title">
+          Little Things I Love About You 🥹
+        </h2>
+
+        <div class="memories">
+
+          <div class="memory">
+            <div class="emoji">😊</div>
+            <h3>Your Smile</h3>
+            <p>
+              Somehow it makes even an ordinary
+              day feel a little better.
+            </p>
+          </div>
+
+          <div class="memory">
+            <div class="emoji">😂</div>
+            <h3>Your Laugh</h3>
+            <p>
+              Especially when you laugh at
+              something completely silly.
+            </p>
+          </div>
+
+          <div class="memory">
+            <div class="emoji">❤️</div>
+            <h3>Your Heart</h3>
+            <p>
+              You have a way of making people
+              around you feel important.
+            </p>
+          </div>
+
+          <div class="memory">
+            <div class="emoji">✨</div>
+            <h3>You</h3>
+            <p>
+              Honestly... just being you
+              is already enough.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PHOTO GALLERY
+    ========================== -->
+
+    <section>
+
+      <div class="card">
+
+        <h2 class="section-title">
+          Our Memories 📸
+        </h2>
+
+        <div id="gallery"
+             class="gallery">
+
+          <!-- Images can be loaded from Supabase -->
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SURPRISE
+    ========================== -->
+
+    <section>
+
+      <div class="card surprise">
+
+        <h2 class="section-title">
+          One More Thing... 👀
+        </h2>
+
+        <p>
+          I have one tiny surprise for you.
+        </p>
+
+        <button class="btn"
+                onclick="showSurprise()">
+          Click Me ❤️
+        </button>
+
+        <div id="surpriseBox"
+             class="surprise-box">
+
+          🥹❤️
+
+          <br><br>
+
+          If you ever forget how special you are,
+          come back to this little page.
+
+          <br><br>
+
+          Someone out there is always
+          wishing the best for you.
+
+          <br><br>
+
+          Happy Birthday once again! 🎂🎉💕
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
     <footer>
-      Made with ❤️ for a very special birthday.
+
+      Made with ❤️ especially for you.
+
+      <br>
+
+      © <span id="year"></span>
+
     </footer>
 
   </main>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
-
   <script>
 
-    /* =====================================
-       SUPABASE CONFIGURATION
-    ====================================== */
+    /* =====================================================
+       SUPABASE CONNECTION
+       =====================================================
 
-    const SUPABASE_URL =
-      "https://exopufmvqktzkntifqpj.supabase.co";
+       IMPORTANT:
 
-    const SUPABASE_KEY =
-      "sb_publishable_uJqcxeregWfthzEMeLl_9Q_3rawqV3X";
+       Replace ONLY these two values with the
+       SAME Supabase URL and ANON KEY you already
+       used in your previous project.
+
+       Do NOT create another Supabase project.
+    ===================================================== */
+
+    const SUPABASE_URL = "YOUR_EXISTING_SUPABASE_URL";
+
+    const SUPABASE_ANON_KEY =
+      "YOUR_EXISTING_SUPABASE_ANON_KEY";
 
 
     const supabaseClient =
-      supabase.createClient(
+      window.supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_KEY
+        SUPABASE_ANON_KEY
       );
 
 
-    /* =====================================
-       OPEN SURPRISE
-    ====================================== */
+    /* =====================================================
+       PAGE START
+    ===================================================== */
 
-    async function openSurprise() {
+    document.addEventListener("DOMContentLoaded", async () => {
 
-      const surprise =
-        document.getElementById("surprise");
+      document.getElementById("year").textContent =
+        new Date().getFullYear();
 
-      surprise.classList.remove("hidden");
+      createHearts();
 
-      createConfetti();
-
-      await loadFriendNames();
-
+      /*
+       * Give the page a moment to load.
+       */
       setTimeout(() => {
 
-        surprise.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+        document
+          .getElementById("loading")
+          .classList.add("hide");
 
-      }, 100);
-
-    }
+      }, 900);
 
 
-    /* =====================================
-       LOAD FRIEND NAMES
-    ====================================== */
+      /*
+       * Load existing birthday data
+       * from Supabase.
+       */
+      await loadBirthdayData();
 
-    async function loadFriendNames() {
+    });
 
-      const container =
-        document.getElementById("friendNames");
 
-      container.innerHTML =
-        '<div class="loading">Loading names... 💌</div>';
+    /* =====================================================
+       LOAD BIRTHDAY DATA
+       ===================================================== */
+
+    async function loadBirthdayData() {
+
+      /*
+       * IMPORTANT:
+       *
+       * Change "birthday" below to the EXISTING
+       * table name from your Supabase project.
+       *
+       * If your existing project uses a different
+       * table, put that name here.
+       */
 
       try {
 
         const {
           data,
           error
-        } = await supabaseClient.rpc(
-          "get_friend_names"
-        );
+        } = await supabaseClient
+          .from("birthday")
+          .select("*")
+          .limit(1)
+          .maybeSingle();
 
 
         if (error) {
 
-          console.error(
-            "Supabase error:",
-            error
+          console.log(
+            "Supabase data loading:",
+            error.message
           );
 
-          container.innerHTML =
-            '<div class="error">Unable to load names.</div>';
+          return;
+        }
+
+
+        if (!data) {
+
+          console.log(
+            "No birthday record found."
+          );
 
           return;
         }
 
 
-        if (!data || data.length === 0) {
+        /*
+         * These column names should match
+         * your existing Supabase table.
+         */
 
-          container.innerHTML =
-            '<div class="loading">No wishes yet... 💌</div>';
+        if (data.name) {
 
-          return;
+          document
+            .getElementById("birthdayName")
+            .textContent =
+            data.name + " ❤️";
+
         }
 
 
-        container.innerHTML =
-          data.map(row => {
+        if (data.wish) {
 
-            return `
-              <div class="friend-name">
-                💌 ${escapeHTML(row.friend_name)}
-              </div>
-            `;
+          document
+            .getElementById("wishText")
+            .textContent =
+            data.wish;
 
-          }).join("");
+        }
 
       }
 
       catch (error) {
 
-        console.error(error);
-
-        container.innerHTML =
-          '<div class="error">Unable to load names.</div>';
+        console.error(
+          "Supabase connection error:",
+          error
+        );
 
       }
 
     }
 
 
-    /* =====================================
-       SEND BIRTHDAY WISH
-    ====================================== */
+    /* =====================================================
+       LOAD PHOTOS FROM SUPABASE STORAGE
+       ===================================================== */
 
-    async function sendBirthdayWish() {
+    async function loadPhotos() {
 
-      const nameInput =
-        document.getElementById("friendName");
+      /*
+       * Change this bucket name ONLY if your existing
+       * Supabase Storage bucket has another name.
+       */
 
-      const messageInput =
-        document.getElementById("birthdayMessage");
-
-      const status =
-        document.getElementById("sendStatus");
-
-
-      const name =
-        nameInput.value.trim();
-
-      const message =
-        messageInput.value.trim();
-
-
-      /* Validation */
-
-      if (!name) {
-
-        status.textContent =
-          "Please enter your name.";
-
-        return;
-      }
-
-
-      if (!message) {
-
-        status.textContent =
-          "Please write a birthday wish.";
-
-        return;
-      }
-
-
-      status.textContent =
-        "Sending your birthday wish... 💌";
+      const BUCKET_NAME = "birthday-photos";
 
 
       try {
 
         const {
+          data,
           error
         } = await supabaseClient
-          .from("birthday_messages")
-          .insert([
-            {
-              friend_name: name,
-              message: message
-            }
-          ]);
+          .storage
+          .from(BUCKET_NAME)
+          .list();
 
 
         if (error) {
 
-          console.error(
-            "Insert error:",
-            error
+          console.log(
+            "Photo loading:",
+            error.message
           );
-
-          status.textContent =
-            "Something went wrong. Please try again.";
 
           return;
         }
 
 
-        /* Success */
-
-        status.textContent =
-          "💌 Your birthday wish has been sent successfully!";
+        const gallery =
+          document.getElementById("gallery");
 
 
-        nameInput.value = "";
-
-        messageInput.value = "";
+        gallery.innerHTML = "";
 
 
-        createConfetti();
+        data.forEach(file => {
+
+          const {
+            data: publicData
+          } = supabaseClient
+            .storage
+            .from(BUCKET_NAME)
+            .getPublicUrl(file.name);
 
 
-        /* Refresh names */
+          const img =
+            document.createElement("img");
 
-        await loadFriendNames();
 
+          img.src =
+            publicData.publicUrl;
+
+
+          img.alt =
+            "Birthday memory";
+
+
+          gallery.appendChild(img);
+
+        });
 
       }
 
       catch (error) {
 
-        console.error(error);
-
-        status.textContent =
-          "Something went wrong. Please try again.";
+        console.error(
+          "Gallery error:",
+          error
+        );
 
       }
 
     }
 
 
-    /* =====================================
-       HTML ESCAPE
-       Prevents unwanted HTML injection
-    ====================================== */
+    /* =====================================================
+       SCROLL TO WISH
+    ===================================================== */
 
-    function escapeHTML(value) {
+    function scrollToWish() {
 
-      if (!value) {
-        return "";
-      }
-
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+      document
+        .getElementById("wishSection")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
 
     }
 
 
-    /* =====================================
-       CONFETTI
-    ====================================== */
+    /* =====================================================
+       SURPRISE
+    ===================================================== */
 
-    function createConfetti() {
+    function showSurprise() {
 
-      const emojis = [
-        "🎉",
-        "🎊",
-        "💗",
-        "💕",
-        "✨",
-        "🦋",
-        "💜"
-      ];
+      const box =
+        document.getElementById("surpriseBox");
+
+      box.classList.toggle("show");
+
+      createConfetti();
+
+    }
 
 
-      for (let i = 0; i < 35; i++) {
+    /* =====================================================
+       FLOATING HEARTS
+    ===================================================== */
 
-        const piece =
+    function createHearts() {
+
+      setInterval(() => {
+
+        const heart =
           document.createElement("div");
 
-        piece.className = "confetti";
+        heart.className = "heart";
 
-        piece.textContent =
-          emojis[
+        const hearts = [
+          "❤️",
+          "💕",
+          "💗",
+          "💖",
+          "💓",
+          "✨"
+        ];
+
+        heart.textContent =
+          hearts[
             Math.floor(
-              Math.random() * emojis.length
+              Math.random() * hearts.length
             )
           ];
 
 
-        piece.style.left =
+        heart.style.left =
           Math.random() * 100 + "vw";
 
-        piece.style.animationDuration =
-          (3 + Math.random() * 3) + "s";
 
-        piece.style.fontSize =
-          (12 + Math.random() * 15) + "px";
+        heart.style.animationDuration =
+          (5 + Math.random() * 5) + "s";
 
 
-        document.body.appendChild(piece);
+        heart.style.fontSize =
+          (15 + Math.random() * 20) + "px";
+
+
+        document.body.appendChild(heart);
 
 
         setTimeout(() => {
 
-          piece.remove();
+          heart.remove();
 
-        }, 7000);
+        }, 10000);
+
+      }, 900);
+
+    }
+
+
+    /* =====================================================
+       SIMPLE CONFETTI
+    ===================================================== */
+
+    function createConfetti() {
+
+      const symbols = [
+        "🎉",
+        "🎊",
+        "❤️",
+        "💕",
+        "✨",
+        "🥳"
+      ];
+
+
+      for (
+        let i = 0;
+        i < 30;
+        i++
+      ) {
+
+        const confetti =
+          document.createElement("div");
+
+
+        confetti.textContent =
+          symbols[
+            Math.floor(
+              Math.random() *
+              symbols.length
+            )
+          ];
+
+
+        confetti.style.position =
+          "fixed";
+
+
+        confetti.style.left =
+          Math.random() * 100 + "vw";
+
+
+        confetti.style.top =
+          "-30px";
+
+
+        confetti.style.fontSize =
+          "25px";
+
+
+        confetti.style.zIndex =
+          "9999";
+
+
+        confetti.style.transition =
+          "transform 3s ease, opacity 3s ease";
+
+
+        document.body.appendChild(confetti);
+
+
+        setTimeout(() => {
+
+          confetti.style.transform =
+            `translateY(110vh)
+             rotate(${Math.random() * 720}deg)`;
+
+
+          confetti.style.opacity =
+            "0";
+
+        }, 50);
+
+
+        setTimeout(() => {
+
+          confetti.remove();
+
+        }, 3200);
 
       }
 
     }
 
-
   </script>
 
 </body>
-          </html>
+  </html>
