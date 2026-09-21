@@ -8,7 +8,7 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-  <title>Happy Birthday 🎂</title>
+  <title>Happy Birthday</title>
 
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -22,9 +22,7 @@
 
 
     body {
-
       margin: 0;
-
       min-height: 100vh;
 
       font-family:
@@ -43,7 +41,6 @@
       color: #3f2944;
 
       overflow-x: hidden;
-
     }
 
 
@@ -52,9 +49,7 @@
     ====================================== */
 
     .heart {
-
       position: fixed;
-
       bottom: -30px;
 
       font-size: 22px;
@@ -67,74 +62,53 @@
       pointer-events: none;
 
       z-index: 0;
-
     }
 
 
     .heart:nth-child(1) {
-
       left: 10%;
-
       animation-delay: 1s;
-
     }
 
 
     .heart:nth-child(2) {
-
       left: 30%;
-
       animation-delay: 3s;
-
     }
 
 
     .heart:nth-child(3) {
-
       left: 55%;
-
       animation-delay: 0s;
-
     }
 
 
     .heart:nth-child(4) {
-
       left: 80%;
-
       animation-delay: 4s;
-
     }
 
 
     @keyframes floatHeart {
 
       0% {
-
         transform:
           translateY(0)
           scale(1);
 
         opacity: 0;
-
       }
-
 
       20% {
-
         opacity: 0.7;
-
       }
 
-
       100% {
-
         transform:
           translateY(-110vh)
           scale(1.5);
 
         opacity: 0;
-
       }
 
     }
@@ -145,9 +119,7 @@
     ====================================== */
 
     .container {
-
       width: 92%;
-
       max-width: 850px;
 
       margin: auto;
@@ -160,7 +132,6 @@
       position: relative;
 
       z-index: 1;
-
     }
 
 
@@ -169,7 +140,6 @@
     ====================================== */
 
     .hero {
-
       background:
         rgba(
           255,
@@ -198,21 +168,16 @@
       margin-bottom: 30px;
 
       backdrop-filter: blur(10px);
-
     }
 
 
     .hero .emoji {
-
       font-size: 70px;
-
       margin-bottom: 10px;
-
     }
 
 
     h1 {
-
       font-size:
         clamp(
           40px,
@@ -226,12 +191,10 @@
         15px;
 
       color: #542f58;
-
     }
 
 
     .hero p {
-
       font-size: 20px;
 
       line-height: 1.6;
@@ -241,12 +204,10 @@
         auto;
 
       max-width: 650px;
-
     }
 
 
     .birthday-name {
-
       font-size: 30px;
 
       font-weight: bold;
@@ -256,7 +217,6 @@
       margin:
         20px
         0;
-
     }
 
 
@@ -265,7 +225,6 @@
     ====================================== */
 
     button {
-
       border: none;
 
       cursor: pointer;
@@ -273,12 +232,10 @@
       font-family: inherit;
 
       font-weight: bold;
-
     }
 
 
     .surprise-btn {
-
       background:
         linear-gradient(
           135deg,
@@ -308,15 +265,34 @@
         );
 
       transition: 0.25s;
-
     }
 
 
     .surprise-btn:hover {
-
       transform:
         translateY(-3px);
+    }
 
+
+    .send-btn {
+      background:
+        linear-gradient(
+          135deg,
+          #a45ac4,
+          #8142a0
+        );
+
+      color: white;
+
+      padding:
+        16px
+        32px;
+
+      border-radius: 35px;
+
+      font-size: 18px;
+
+      margin-top: 5px;
     }
 
 
@@ -325,7 +301,6 @@
     ====================================== */
 
     .section {
-
       background:
         rgba(
           255,
@@ -354,12 +329,10 @@
           100,
           0.10
         );
-
     }
 
 
     .section h2 {
-
       font-size:
         clamp(
           28px,
@@ -373,23 +346,18 @@
         5px
         0
         15px;
-
     }
 
 
     .section p {
-
       font-size: 18px;
 
       line-height: 1.55;
-
     }
 
 
     .hidden {
-
       display: none;
-
     }
 
 
@@ -398,14 +366,11 @@
     ====================================== */
 
     #friendNames {
-
       margin-top: 20px;
-
     }
 
 
     .friend-name {
-
       display: inline-block;
 
       background: #f7e9fb;
@@ -430,23 +395,18 @@
           120,
           0.08
         );
-
     }
 
 
     .loading {
-
       font-size: 18px;
 
       color: #765878;
-
     }
 
 
     .error {
-
       color: #a14c64;
-
     }
 
 
@@ -455,11 +415,9 @@
     ====================================== */
 
     .form-group {
-
       margin:
         18px
         0;
-
     }
 
 
@@ -490,7 +448,6 @@
       background: #fff;
 
       color: #3f2944;
-
     }
 
 
@@ -508,40 +465,13 @@
           184,
           0.10
         );
-
     }
 
 
     textarea {
-
       min-height: 180px;
 
       resize: vertical;
-
-    }
-
-
-    .send-btn {
-
-      background:
-        linear-gradient(
-          135deg,
-          #a45ac4,
-          #8142a0
-        );
-
-      color: white;
-
-      padding:
-        16px
-        32px;
-
-      border-radius: 35px;
-
-      font-size: 18px;
-
-      margin-top: 5px;
-
     }
 
 
@@ -552,7 +482,6 @@
       font-size: 18px;
 
       min-height: 25px;
-
     }
 
 
@@ -573,41 +502,32 @@
       padding: 25px;
 
       margin-top: 20px;
-
     }
 
 
     .private-box p {
-
       margin:
         8px
         0;
-
     }
 
 
     .lock {
-
       font-size: 50px;
-
     }
 
 
     /* =====================================
-       LOGIN FORM
+       LOGIN
     ====================================== */
 
     .login-form {
-
       margin-top: 25px;
-
     }
 
 
     .login-form input {
-
       margin-bottom: 14px;
-
     }
 
 
@@ -631,7 +551,6 @@
       color: white;
 
       font-size: 17px;
-
     }
 
 
@@ -642,7 +561,6 @@
       font-weight: bold;
 
       margin-top: 15px;
-
     }
 
 
@@ -655,7 +573,6 @@
       margin-top: 30px;
 
       text-align: left;
-
     }
 
 
@@ -666,7 +583,6 @@
       color: #542f58;
 
       font-size: 26px;
-
     }
 
 
@@ -690,7 +606,6 @@
           120,
           0.10
         );
-
     }
 
 
@@ -699,7 +614,6 @@
       color: #7b3f88;
 
       font-size: 18px;
-
     }
 
 
@@ -710,7 +624,6 @@
       white-space: pre-wrap;
 
       line-height: 1.6;
-
     }
 
 
@@ -727,7 +640,6 @@
       color: #795d7e;
 
       font-size: 15px;
-
     }
 
 
@@ -751,7 +663,6 @@
 
       animation:
         fall 4s linear forwards;
-
     }
 
 
@@ -762,7 +673,6 @@
         transform:
           translateY(110vh)
           rotate(720deg);
-
       }
 
     }
@@ -779,7 +689,6 @@
         width: 94%;
 
         padding-top: 15px;
-
       }
 
 
@@ -790,7 +699,6 @@
           18px;
 
         border-radius: 28px;
-
       }
 
 
@@ -801,7 +709,6 @@
           18px;
 
         border-radius: 26px;
-
       }
 
 
@@ -809,7 +716,6 @@
       .section p {
 
         font-size: 17px;
-
       }
 
 
@@ -817,7 +723,6 @@
       textarea {
 
         font-size: 16px;
-
       }
 
 
@@ -825,7 +730,6 @@
       .send-btn {
 
         width: 90%;
-
       }
 
     }
@@ -843,11 +747,8 @@
   ====================================== -->
 
   <div class="heart">💗</div>
-
   <div class="heart">💕</div>
-
   <div class="heart">🦋</div>
-
   <div class="heart">💜</div>
 
 
@@ -855,7 +756,7 @@
 
 
     <!-- =====================================
-         WELCOME
+         WELCOME SECTION
     ====================================== -->
 
     <section class="hero">
@@ -871,13 +772,13 @@
 
 
       <div class="birthday-name">
-        Our Mentor 🎀
+        Our Mentor🎀
       </div>
 
 
       <p>
-        On this day, you have a lot of
-        heartfelt messages waiting for you...
+        On this day, You have a lot of heartfelt
+        messages waiting for you...
       </p>
 
 
@@ -897,9 +798,8 @@
     </section>
 
 
-
     <!-- =====================================
-         FRIEND NAMES
+         SURPRISE / FRIEND NAMES
     ====================================== -->
 
     <section
@@ -920,7 +820,7 @@
       <div id="friendNames">
 
         <div class="loading">
-          Loading names... 💌
+          Loading names...
         </div>
 
       </div>
@@ -929,9 +829,8 @@
     </section>
 
 
-
     <!-- =====================================
-         SEND WISH
+         SEND BIRTHDAY WISH
     ====================================== -->
 
     <section class="section">
@@ -943,8 +842,8 @@
 
 
       <p>
-        Your name will be visible,
-        but your message will remain private.
+        Your name will be visible, but your message
+        will remain private.
       </p>
 
 
@@ -984,9 +883,8 @@
     </section>
 
 
-
     <!-- =====================================
-         BIRTHDAY PERSON
+         PRIVATE MESSAGE SECTION
     ====================================== -->
 
     <section class="section">
@@ -1014,7 +912,7 @@
         </p>
 
 
-        <!-- LOGIN -->
+        <!-- LOGIN FORM -->
 
         <div class="login-form">
 
@@ -1034,6 +932,7 @@
 
 
           <button
+            type="button"
             onclick="birthdayLogin()">
 
             🔓 Login
@@ -1051,7 +950,6 @@
 
 
         </div>
-
 
 
         <!-- PRIVATE MESSAGES -->
@@ -1082,7 +980,6 @@
     </section>
 
 
-
     <!-- =====================================
          FINAL MESSAGE
     ====================================== -->
@@ -1097,18 +994,17 @@
 
       <p>
 
-        May the year ahead bring you
-        beautiful moments, unexpected happiness,
-        meaningful memories and everything
-        your heart is hoping for. 💕
+        May the year ahead bring you beautiful moments,
+        unexpected happiness, meaningful memories and
+        everything your heart is hoping for. 💕
 
       </p>
 
 
       <p>
 
-        Keep smiling, keep growing and keep
-        being the wonderful person you are. ✨
+        Keep smiling, keep growing and keep being the
+        wonderful person you are. ✨
 
       </p>
 
@@ -1123,7 +1019,6 @@
     </section>
 
 
-
     <footer>
 
       Made with ❤️ for a very special birthday.
@@ -1132,7 +1027,6 @@
 
 
   </main>
-
 
 
   <!-- =====================================
@@ -1161,9 +1055,8 @@
       );
 
 
-
     /* =====================================
-       BIRTHDAY PERSON LOGIN
+       BIRTHDAY LOGIN DETAILS
     ====================================== */
 
     const BIRTHDAY_GMAIL =
@@ -1174,13 +1067,11 @@
       "TJ0927";
 
 
-
     /* =====================================
        OPEN SURPRISE
     ====================================== */
 
     async function openSurprise() {
-
 
       const surprise =
         document.getElementById(
@@ -1196,11 +1087,16 @@
       createConfetti();
 
 
+      /*
+       * IMPORTANT:
+       * This uses your existing Supabase
+       * function for the people's names.
+       */
+
       await loadFriendNames();
 
 
       setTimeout(() => {
-
 
         surprise.scrollIntoView({
 
@@ -1210,20 +1106,17 @@
 
         });
 
-
       }, 100);
-
 
     }
 
 
-
     /* =====================================
-       LOAD FRIEND NAMES
+       LOAD PEOPLE'S NAMES
+       DO NOT CHANGE THIS LOGIC
     ====================================== */
 
     async function loadFriendNames() {
-
 
       const container =
         document.getElementById(
@@ -1232,25 +1125,24 @@
 
 
       container.innerHTML =
-        '<div class="loading">Loading names... 💌</div>';
+        '<div class="loading">Loading names...</div>';
 
 
       try {
 
-
         const {
           data,
           error
-        } = await supabaseClient.rpc(
-          "get_friend_names"
-        );
+        } =
+          await supabaseClient.rpc(
+            "get_friend_names"
+          );
 
 
         if (error) {
 
-
           console.error(
-            "Supabase error:",
+            "Supabase name error:",
             error
           );
 
@@ -1269,7 +1161,6 @@
           data.length === 0
         ) {
 
-
           container.innerHTML =
             '<div class="loading">No wishes yet... 💌</div>';
 
@@ -1279,43 +1170,41 @@
         }
 
 
+        /*
+         * Display the names returned by
+         * your existing Supabase function.
+         */
+
         container.innerHTML =
-          data.map(row => {
+          data
+            .map(row => {
+
+              return `
+                <div class="friend-name">
+                  💌 ${escapeHTML(
+                    row.friend_name
+                  )}
+                </div>
+              `;
+
+            })
+            .join("");
 
 
-            return `
+      } catch (error) {
 
-              <div class="friend-name">
-
-                💌
-                ${escapeHTML(
-                  row.friend_name
-                )}
-
-              </div>
-
-            `;
-
-
-          }).join("");
-
-
-      }
-
-      catch (error) {
-
-
-        console.error(error);
+        console.error(
+          "Name loading error:",
+          error
+        );
 
 
         container.innerHTML =
           '<div class="error">Unable to load names.</div>';
 
-
       }
 
     }
-
 
 
     /* =====================================
@@ -1323,7 +1212,6 @@
     ====================================== */
 
     async function sendBirthdayWish() {
-
 
       const nameInput =
         document.getElementById(
@@ -1351,27 +1239,24 @@
         messageInput.value.trim();
 
 
-
-      /* Validation */
+      /* Validate name */
 
       if (!name) {
 
-
         status.textContent =
           "Please enter your name.";
-
 
         return;
 
       }
 
 
-      if (!message) {
+      /* Validate message */
 
+      if (!message) {
 
         status.textContent =
           "Please write a birthday wish.";
-
 
         return;
 
@@ -1382,34 +1267,28 @@
         "Sending your birthday wish... 💌";
 
 
-
       try {
-
 
         const {
           error
-        } = await supabaseClient
+        } =
+          await supabaseClient
 
-          .from(
-            "birthday_messages"
-          )
+            .from(
+              "birthday_messages"
+            )
 
-          .insert([
+            .insert([
 
-            {
+              {
+                friend_name: name,
+                message: message
+              }
 
-              friend_name: name,
-
-              message: message
-
-            }
-
-          ]);
-
+            ]);
 
 
         if (error) {
-
 
           console.error(
             "Insert error:",
@@ -1420,14 +1299,12 @@
           status.textContent =
             "Something went wrong. Please try again.";
 
-
           return;
 
         }
 
 
-
-        /* SUCCESS */
+        /* Success */
 
         status.textContent =
           "💌 Your birthday wish has been sent successfully!";
@@ -1441,49 +1318,54 @@
         createConfetti();
 
 
-        /* Refresh friend names */
+        /*
+         * Refresh the people's names
+         */
 
         await loadFriendNames();
 
 
-      }
+      } catch (error) {
 
-      catch (error) {
-
-
-        console.error(error);
+        console.error(
+          "Send error:",
+          error
+        );
 
 
         status.textContent =
           "Something went wrong. Please try again.";
-
 
       }
 
     }
 
 
-
     /* =====================================
-       BIRTHDAY LOGIN
+       BIRTHDAY PERSON LOGIN
     ====================================== */
 
     async function birthdayLogin() {
 
 
       const email =
-        document.getElementById(
-          "birthdayEmail"
-        ).value.trim();
+        document
+          .getElementById(
+            "birthdayEmail"
+          )
+          .value
+          .trim();
 
 
       const password =
-        document.getElementById(
-          "birthdayPassword"
-        ).value;
+        document
+          .getElementById(
+            "birthdayPassword"
+          )
+          .value;
 
 
-      const errorMessage =
+      const loginError =
         document.getElementById(
           "loginError"
         );
@@ -1495,8 +1377,9 @@
         );
 
 
-
-      /* Check credentials */
+      /*
+       * Check Gmail + password
+       */
 
       if (
 
@@ -1511,9 +1394,9 @@
       ) {
 
 
-        /* Hide error */
+        /* Hide login error */
 
-        errorMessage.style.display =
+        loginError.style.display =
           "none";
 
 
@@ -1523,39 +1406,22 @@
           "block";
 
 
-        /* Load private wishes */
+        /* Load wishes */
 
         await loadPrivateMessages();
 
 
-        /* Confetti */
+        /* Celebration */
 
         createConfetti();
 
 
-        /* Scroll */
-
-        setTimeout(() => {
+      } else {
 
 
-          privateMessages.scrollIntoView({
+        /* Wrong credentials */
 
-            behavior: "smooth",
-
-            block: "start"
-
-          });
-
-
-        }, 100);
-
-
-      }
-
-      else {
-
-
-        errorMessage.style.display =
+        loginError.style.display =
           "block";
 
 
@@ -1564,26 +1430,6 @@
     }
 
 
-
     /* =====================================
        LOAD PRIVATE MESSAGES
-    ====================================== */
-
-    async function loadPrivateMessages() {
-
-
-      const container =
-        document.getElementById(
-          "privateMessagesList"
-        );
-
-
-      container.innerHTML =
-        '<div class="loading">Loading private wishes... 💌</div>';
-
-
-      try {
-
-
-        /*
-          We don't us
+    ==============================
