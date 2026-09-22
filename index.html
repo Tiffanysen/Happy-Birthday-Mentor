@@ -78,7 +78,7 @@ footer{text-align:center;margin-top:45px;color:#876b89;font-size:15px}
 <section class="hero">
 <div class="cake">🎂</div>
 <h1>Happy<br>Birthday!</h1>
-<h2>Jenish❣️</h2>
+<h2>Jenish</h2>
 
 <p>On this day, You have a lot of heartfelt messages waiting for you...</p>
 <p>There is a little surprise waiting below.</p>
@@ -94,10 +94,10 @@ Open Your Surprise 🎁
 <!-- PUBLIC NAMES -->
 <section id="messagesSection" class="card hidden">
 
-<h2 class="title">💌 Messages From Everyone</h2>
+<h2 class="title">Messages From Everyone</h2>
 
 <p class="subtitle">
-These are the wonderful people who left a little something for you. ❤️
+These are the wonderful people who left a little something for you. 
 </p>
 
 <div id="names" class="names">
@@ -110,7 +110,7 @@ These are the wonderful people who left a little something for you. ❤️
 <!-- LEAVE MESSAGE -->
 <section id="wishSection" class="card">
 
-<h2 class="title">💌 Leave Your Message</h2>
+<h2 class="title">Leave Your Message</h2>
 
 <p class="subtitle">
 Leave a heartfelt birthday message. Your name will be shown, while your message will remain private. 
@@ -130,11 +130,11 @@ placeholder="Enter your name"
 
 <textarea
 id="wishMessage"
-placeholder="Write your birthday message... ❤️"
+placeholder="Write your birthday message... "
 ></textarea>
 
 <button class="btn" onclick="submitWish()">
-Send Message 💌
+Send Message 
 </button>
 
 <div id="wishStatus" class="status"></div>
@@ -146,10 +146,10 @@ Send Message 💌
 <!-- LOGIN -->
 <section id="loginSection" class="card">
 
-<h2 class="title">🔐 A Private Corner</h2>
+<h2 class="title">A Private Corner</h2>
 
 <p class="subtitle">
-Some messages were meant only for you... ❤️
+The messages were meant only for you... ❤️
 <br>
 Enter your details to open them.
 </p>
@@ -185,7 +185,7 @@ Open Messages
 <!-- PRIVATE MESSAGES -->
 <section id="privateSection" class="card hidden">
 
-<h2 class="title">💌 Your Private Messages</h2>
+<h2 class="title">Your Private Messages</h2>
 
 <p class="subtitle">
 These messages are just for you. 
@@ -238,11 +238,11 @@ Made with ❤️ especially for you.
 <h2>Surprise! 🥹</h2>
 
 <p>
-You have people who wanted to make your birthday a little more special. ❤️
+You have people who wanted to make your birthday a little more special. 
 </p>
 
 <button class="popup-close" onclick="closeSurprise()">
-Show Me 💌
+Show Me ✨
 </button>
 
 </div>
@@ -341,7 +341,7 @@ document.createElement("div");
 
 d.className="name-card";
 
-d.textContent="💖 "+name;
+d.textContent=" "+name;
 
 box.appendChild(d);
 
@@ -384,7 +384,7 @@ if(!name||!message){
 status.style.color="#c44747";
 
 status.textContent=
-"Please enter your name and message. ❤️";
+"Please enter your name and message. ";
 
 return;
 
@@ -394,7 +394,7 @@ return;
 status.style.color="#74407d";
 
 status.textContent=
-"Sending your message... 💌";
+"Sending your message... ";
 
 
 try{
@@ -417,7 +417,7 @@ if(error)throw error;
 status.style.color="#6b3f78";
 
 status.textContent=
-"Your message has been sent! ❤️";
+"Your message has been sent! ";
 
 
 document.getElementById("wishName").value="";
@@ -563,7 +563,7 @@ document.createElement("div");
 n.className="private-name";
 
 n.textContent=
-"💌 From "+(x.friend_name||"Someone");
+" From "+(x.friend_name||"Someone");
 
 
 const m=
